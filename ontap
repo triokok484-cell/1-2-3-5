@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Lý Thuyết Máy tính</title>
+    <style>
+        /* CSS Styling cho ứng dụng */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --highlight-bg: #e0f7fa; /* Màu highlight xanh nhạt */
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 20px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        #lang-toggle {
+            padding: 10px 15px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border: 1px solid var(--primary-color);
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #lang-toggle:hover {
+            background-color: #0056b3;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            display: block;
+            border: 1px solid transparent;
+        }
+
+        nav a:hover {
+            background-color: #e9ecef;
+            color: var(--primary-color);
+        }
+
+        nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+        
+        #content {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        #content h2 {
+            color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        #content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        #content li {
+            background-color: #fdfdfd;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .highlight {
+            background-color: var(--highlight-bg);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #005f73;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5em; }
+            nav ul { flex-direction: column; }
+            .container { margin: 10px; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1 id="main-title">Học Lý Thuyết Máy tính</h1>
+            <button id="lang-toggle">Switch to English</button>
+        </header>
+
+        <nav id="chapter-nav">
+            <ul>
+                <li><a href="#" data-chapter="chapter1" class="active">Chương 1</a></li>
+                <li><a href="#" data-chapter="chapter2">Chương 2</a></li>
+                <li><a href="#" data-chapter="chapter3">Chương 3</a></li>
+                <li><a href="#" data-chapter="chapter5">Chương 5</a></li>
+            </ul>
+        </nav>
+
+        <main id="content">
+            <!-- Nội dung sẽ được JavaScript chèn vào đây -->
+        </main>
+    </div>
+
+    <script>
+        // JavaScript cho ứng dụng
+        const contentData = {
+            // Dữ liệu Tiếng Việt
+            vi: {
+                mainTitle: "Học Lý Thuyết Máy tính",
+                langButtonText: "Switch to English",
+                nav: {
+                    chapter1: "Chương 1",
+                    chapter2: "Chương 2",
+                    chapter3: "Chương 3",
+                    chapter5: "Chương 5"
+                },
+                chapters: {
+                    chapter1: {
+                        title: "Chương 1: Giới thiệu",
+                        points: [
+                            `<strong>Hai Mô Hình Máy Tính Cơ Bản:</strong>
+                             <ul>
+                                <li><span class="highlight">Mô hình Turing:</span> Định nghĩa máy tính là một bộ xử lý dữ liệu có khả năng lập trình. Công thức cốt lõi: <em>Dữ liệu đầu ra = Xử lý(Chương trình, Dữ liệu đầu vào)</em>.</li>
+                                <li><span class="highlight">Mô hình von Neumann:</span> Nền tảng của máy tính hiện đại. Đặc điểm quan trọng nhất là <span class="highlight">chương trình được lưu trữ chung với dữ liệu</span> trong bộ nhớ.</li>
+                             </ul>`,
+                            `<strong>Cấu Trúc Máy Tính theo von Neumann:</strong>
+                             Gồm 4 thành phần chính: 
+                             <ol>
+                                <li><strong>Bộ nhớ (Memory):</strong> Lưu trữ lệnh và dữ liệu.</li>
+                                <li><strong>Đơn vị logic số học (ALU):</strong> Thực hiện các phép toán.</li>
+                                <li><strong>Đơn vị điều khiển (Control Unit):</strong> Điều khiển mọi hoạt động.</li>
+                                <li><strong>Hệ thống vào/ra (Input/Output):</strong> Giao tiếp với bên ngoài.</li>
+                             </ol>`,
+                            `<strong>Ba Thành Phần Chính của Máy Tính:</strong>
+                            <ul>
+                                <li><span class="highlight">Phần cứng (Hardware):</span> Các bộ phận vật lý (CPU, RAM, ổ cứng...).</li>
+                                <li><span class="highlight">Dữ liệu (Data):</span> Thông tin được xử lý, lưu dưới dạng nhị phân (bit 0 và 1).</li>
+                                <li><span class="highlight">Phần mềm (Software):</span> Là các chương trình (tập hợp các chỉ thị) hướng dẫn phần cứng cách xử lý dữ liệu.</li>
+                            </ul>`
+                        ]
+                    },
+                    chapter2: {
+                        title: "Chương 2: Các Hệ Thống Số",
+                        points: [
+                            `<strong>Hệ Thống Số Vị Trí (Positional Number Systems):</strong>
+                             Giá trị của một con số phụ thuộc vào <span class="highlight">vị trí</span> của nó. Mỗi hệ thống có một <span class="highlight">cơ số (base)</span> và một tập hợp các ký hiệu.`,
+                            `<strong>Các Hệ Đếm Quan Trọng:</strong>
+                             <ul>
+                                <li><strong>Decimal (Thập phân - Base 10):</strong> Hệ đếm hàng ngày {0-9}.</li>
+                                <li><strong>Binary (Nhị phân - Base 2):</strong> Ngôn ngữ của máy tính, chỉ dùng {0, 1} gọi là <span class="highlight">bit</span>.</li>
+                                <li><strong>Hexadecimal (Thập lục phân - Base 16):</strong> Dùng {0-9, A-F}. Dùng để biểu diễn dữ liệu nhị phân ngắn gọn.</li>
+                             </ul>`,
+                            `<strong>Chuyển Đổi Giữa các Hệ Đếm:</strong>
+                             <ul>
+                                <li><strong>Bất kỳ → Thập phân:</strong> Nhân từng chữ số với lũy thừa của cơ số tương ứng vị trí rồi cộng lại.</li>
+                                <li><strong>Thập phân → Bất kỳ:</strong> Chia liên tiếp (phần nguyên) hoặc nhân liên tiếp (phần thập phân) cho cơ số.</li>
+                                <li><strong>Chuyển đổi nhanh:</strong> Nhị phân ↔ Bát phân (<span class="highlight">nhóm 3 bit</span>), Nhị phân ↔ Thập lục phân (<span class="highlight">nhóm 4 bit</span>).</li>
+                             </ul>`
+                        ]
+                    },
+                    chapter3: {
+                        title: "Chương 3: Lưu Trữ Dữ Liệu",
+                        points: [
+                            `<strong>Nguyên Tắc Cơ Bản:</strong> Mọi loại dữ liệu (số, văn bản, âm thanh, hình ảnh) đều được chuyển đổi thành <span class="highlight">chuỗi bit (bit patterns)</span>.`,
+                            `<strong>Lưu trữ Số (Numbers):</strong>
+                             <ul>
+                                <li><strong>Số nguyên (Integers):</strong> Phổ biến nhất là dùng <span class="highlight">Bù 2 (Two's Complement)</span> cho số có dấu. Bit ngoài cùng bên trái chỉ dấu.</li>
+                                <li><strong>Số thực (Real Numbers):</strong> Sử dụng biểu diễn <span class="highlight">Dấu phẩy động (Floating-Point)</span> theo chuẩn IEEE 754, gồm 3 phần: Dấu, Số mũ, và Phần định trị.</li>
+                             </ul>`,
+                            `<strong>Lưu trữ Dữ liệu khác:</strong>
+                             <ul>
+                                <li><strong>Văn bản (Text):</strong> Mỗi ký tự được mã hóa bằng <span class="highlight">ASCII</span> hoặc <span class="highlight">Unicode</span>.</li>
+                                <li><strong>Âm thanh & Hình ảnh:</strong> Dữ liệu tương tự (analog) được số hóa qua 3 bước: <span class="highlight">Lấy mẫu (Sampling)</span>, <span class="highlight">Lượng tử hóa (Quantization)</span>, và <span class="highlight">Mã hóa (Encoding)</span>.</li>
+                             </ul>`
+                        ]
+                    },
+                    chapter5: {
+                        title: "Chương 5: Tổ chức Máy tính",
+                        points: [
+                            `<strong>Ba Hệ Thống Con (Subsystems):</strong>
+                             <ol>
+                                <li><strong>CPU (Đơn vị xử lý trung tâm):</strong> "Bộ não" gồm ALU, Control Unit, và các Thanh ghi (Registers).</li>
+                                <li><strong>Bộ nhớ chính (Main Memory):</strong> Lưu trữ chương trình và dữ liệu đang chạy (RAM).</li>
+                                <li><strong>Hệ thống Vào/Ra (I/O Subsystem):</strong> Giao tiếp với bên ngoài (bàn phím, màn hình, ổ đĩa).</li>
+                             </ol>`,
+                            `<strong>Chu Trình Thực Thi Lệnh (Machine Cycle):</strong>
+                             CPU thực thi chương trình theo chu trình lặp 3 bước: <span class="highlight">Tìm nạp (Fetch)</span> → <span class="highlight">Giải mã (Decode)</span> → <span class="highlight">Thực thi (Execute)</span>.`,
+                            `<strong>Kết nối các Hệ Thống Con:</strong> Các thành phần được kết nối với nhau qua hệ thống <span class="highlight">Bus</span> (Data Bus, Address Bus, Control Bus).`,
+                            `<strong>Kiến Trúc và Kỹ Thuật Nâng Cao:</strong>
+                             <ul>
+                                <li><strong>CISC vs. RISC:</strong> Hai triết lý thiết kế tập lệnh (phức tạp vs. rút gọn).</li>
+                                <li><strong>Pipelining (Xử lý gối đầu):</strong> Thực hiện gối đầu các giai đoạn của nhiều lệnh để tăng hiệu suất.</li>
+                                <li><strong>Parallel Processing (Xử lý song song):</strong> Sử dụng nhiều bộ xử lý để thực hiện nhiều tác vụ cùng lúc.</li>
+                             </ul>`
+                        ]
+                    }
+                }
+            },
+            // Dữ liệu Tiếng Anh
+            en: {
+                mainTitle: "Computer Science Study",
+                langButtonText: "Chuyển sang Tiếng Việt",
+                nav: {
+                    chapter1: "Chapter 1",
+                    chapter2: "Chapter 2",
+                    chapter3: "Chapter 3",
+                    chapter5: "Chapter 5"
+                },
+                chapters: {
+                    chapter1: {
+                        title: "Chapter 1: Introduction",
+                        points: [
+                            `<strong>Two Fundamental Computer Models:</strong>
+                             <ul>
+                                <li><span class="highlight">Turing Model:</span> Defines a computer as a programmable data processor. Core formula: <em>Output Data = Process(Program, Input Data)</em>.</li>
+                                <li><span class="highlight">von Neumann Model:</span> The basis for modern computers. The most crucial feature is the <span class="highlight">stored-program concept</span>, where the program is stored in memory along with the data.</li>
+                             </ul>`,
+                            `<strong>Computer Structure according to von Neumann:</strong>
+                             Consists of 4 main components:
+                             <ol>
+                                <li><strong>Memory:</strong> Stores instructions and data.</li>
+                                <li><strong>Arithmetic Logic Unit (ALU):</strong> Performs calculations.</li>
+                                <li><strong>Control Unit:</strong> Directs all operations.</li>
+                                <li><strong>Input/Output System:</strong> Communicates with the outside world.</li>
+                             </ol>`,
+                            `<strong>Three Main Components of a Computer:</strong>
+                            <ul>
+                                <li><span class="highlight">Hardware:</span> The physical parts (CPU, RAM, hard drive...).</li>
+                                <li><span class="highlight">Data:</span> Information being processed, stored in binary form (bits 0 and 1).</li>
+                                <li><span class="highlight">Software:</span> Programs (collections of instructions) that tell the hardware how to process data.</li>
+                            </ul>`
+                        ]
+                    },
+                    chapter2: {
+                        title: "Chapter 2: Number Systems",
+                        points: [
+                            `<strong>Positional Number Systems:</strong>
+                             The value of a digit depends on its <span class="highlight">position</span>. Each system has a <span class="highlight">base (radix)</span> and a set of symbols.`,
+                            `<strong>Important Number Systems:</strong>
+                             <ul>
+                                <li><strong>Decimal (Base 10):</strong> The everyday number system {0-9}.</li>
+                                <li><strong>Binary (Base 2):</strong> The language of computers, using only {0, 1}, called <span class="highlight">bits</span>.</li>
+                                <li><strong>Hexadecimal (Base 16):</strong> Uses {0-9, A-F}. Used for a compact representation of binary data.</li>
+                             </ul>`,
+                            `<strong>Conversion Between Systems:</strong>
+                             <ul>
+                                <li><strong>Any Base → Decimal:</strong> Multiply each digit by the base raised to the power of its position, then sum them up.</li>
+                                <li><strong>Decimal → Any Base:</strong> Use repeated division (for the integer part) or repeated multiplication (for the fractional part) by the new base.</li>
+                                <li><strong>Shortcuts:</strong> Binary ↔ Octal (<span class="highlight">group by 3 bits</span>), Binary ↔ Hexadecimal (<span class="highlight">group by 4 bits</span>).</li>
+                             </ul>`
+                        ]
+                    },
+                    chapter3: {
+                        title: "Chapter 3: Data Storage",
+                        points: [
+                            `<strong>Fundamental Principle:</strong> All data types (numbers, text, audio, images) are converted into <span class="highlight">bit patterns</span> for storage.`,
+                            `<strong>Storing Numbers:</strong>
+                             <ul>
+                                <li><strong>Integers:</strong> The most common method for signed integers is <span class="highlight">Two's Complement</span>. The leftmost bit indicates the sign.</li>
+                                <li><strong>Real Numbers:</strong> Use the <span class="highlight">Floating-Point</span> representation (IEEE 754 standard), which consists of a Sign, an Exponent, and a Mantissa.</li>
+                             </ul>`,
+                            `<strong>Storing Other Data:</strong>
+                             <ul>
+                                <li><strong>Text:</strong> Each character is encoded using <span class="highlight">ASCII</span> or <span class="highlight">Unicode</span>.</li>
+                                <li><strong>Audio & Images:</strong> Analog data is digitized through 3 steps: <span class="highlight">Sampling</span>, <span class="highlight">Quantization</span>, and <span class="highlight">Encoding</span>.</li>
+                             </ul>`
+                        ]
+                    },
+                    chapter5: {
+                        title: "Chapter 5: Computer Organization",
+                        points: [
+                            `<strong>Three Subsystems:</strong>
+                             <ol>
+                                <li><strong>CPU (Central Processing Unit):</strong> The "brain" comprising the ALU, Control Unit, and Registers.</li>
+                                <li><strong>Main Memory:</strong> Stores the currently running program and data (RAM).</li>
+                                <li><strong>I/O (Input/Output) Subsystem:</strong> Interacts with the outside world (keyboard, screen, disk).</li>
+                             </ol>`,
+                            `<strong>The Machine Cycle:</strong>
+                             The CPU executes a program by repeatedly performing a 3-step cycle: <span class="highlight">Fetch</span> → <span class="highlight">Decode</span> → <span class="highlight">Execute</span>.`,
+                            `<strong>Subsystem Interconnection:</strong> Components are connected via a system of <span class="highlight">Buses</span> (Data Bus, Address Bus, Control Bus).`,
+                            `<strong>Advanced Architectures & Techniques:</strong>
+                             <ul>
+                                <li><strong>CISC vs. RISC:</strong> Two philosophies for instruction set design (Complex vs. Reduced).</li>
+                                <li><strong>Pipelining:</strong> Overlapping the execution stages of multiple instructions to increase throughput.</li>
+                                <li><strong>Parallel Processing:</strong> Using multiple processors to perform multiple tasks simultaneously.</li>
+                             </ul>`
+                        ]
+                    }
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const contentDiv = document.getElementById('content');
+            const langToggleButton = document.getElementById('lang-toggle');
+            const mainTitle = document.getElementById('main-title');
+            const nav = document.getElementById('chapter-nav');
+            const navLinks = nav.querySelectorAll('a');
+
+            let currentLang = 'vi';
+            let currentChapter = 'chapter1';
+
+            function renderContent() {
+                // Get data for the current language and chapter
+                const langData = contentData[currentLang];
+                const chapterData = langData.chapters[currentChapter];
+
+                // Update UI text
+                mainTitle.textContent = langData.mainTitle;
+                langToggleButton.textContent = langData.langButtonText;
+                
+                navLinks.forEach(link => {
+                    const chapterId = link.dataset.chapter;
+                    link.textContent = langData.nav[chapterId];
+                });
+
+                // Animate content change
+                contentDiv.style.animation = 'none';
+                contentDiv.offsetHeight; // Trigger reflow
+                contentDiv.style.animation = 'fadeIn 0.5s ease-in-out';
+                
+                // Build HTML for the chapter content
+                let html = `<h2>${chapterData.title}</h2><ul>`;
+                chapterData.points.forEach(point => {
+                    html += `<li>${point}</li>`;
+                });
+                html += `</ul>`;
+                contentDiv.innerHTML = html;
+            }
+            
+            function updateActiveNav() {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.chapter === currentChapter) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Event listener for language toggle button
+            langToggleButton.addEventListener('click', () => {
+                currentLang = (currentLang === 'vi') ? 'en' : 'vi';
+                renderContent();
+            });
+
+            // Event listeners for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    currentChapter = link.dataset.chapter;
+                    renderContent();
+                    updateActiveNav();
+                });
+            });
+
+            // Initial render on page load
+            renderContent();
+            updateActiveNav();
+        });
+    </script>
+</body>
+</html>
